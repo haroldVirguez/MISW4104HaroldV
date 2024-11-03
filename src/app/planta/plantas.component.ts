@@ -10,6 +10,8 @@ import { Planta } from './planta';
 export class PlantasComponent implements OnInit {
   plantas: Planta[] = [];
   error: boolean = false;
+  totalInterior: number = 0;
+  totalExterior: number = 0;
 
   constructor(private plantaService: PlantaService) {}
 
@@ -17,10 +19,16 @@ export class PlantasComponent implements OnInit {
     this.plantaService.getPlantas().subscribe({
       next: (data) => {
         this.plantas = data;
+        this.calcularTotales();
       },
       error: () => {
         this.error = true;
       }
     });
+  }
+
+  private calcularTotales(): void {
+    this.totalInterior = this.plantas.filter(planta => planta.tipo === 'Interior').length;
+    this.totalExterior = this.plantas.filter(planta => planta.tipo === 'Exterior').length;
   }
 }
