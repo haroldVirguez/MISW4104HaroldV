@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h1>Vivero El Otoño</h1>
+
+  <div class="header-image mb-4">
+    <img src="assets/img_header.png" alt="Colección de plantas en el vivero El Otoño" class="header-img">
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    Ha ocurrido un error al cargar las plantas. Intenta nuevamente más tarde.
+  </div>
+
+  <div *ngIf="!plantas.length && !error" class="alert alert-info">
+    Cargando plantas...
+  </div>
+
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre Común</th>
+          <th>Tipo</th>
+          <th>Clima</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let planta of plantas; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ planta.nombre_comun }}</td>
+          <td>{{ planta.tipo }}</td>
+          <td>{{ planta.clima }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    Contact us: +57 3102105253 - info&#64;viveroelotono.com - &#64;viveroelotonio
+  </div>
+</div>
